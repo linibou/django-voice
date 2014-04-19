@@ -131,7 +131,10 @@ class FeedbackListView(VoiceMixin, ListView):
 class FeedbackWidgetView(FormView):
     template_name = 'djangovoice/widget.html'
     form_class = WidgetForm
-    initial = {'type': Type.objects.get(pk=1)}
+
+    def __init__(self, *args, **kwargs):
+        self.initial = {'type': Type.objects.get(pk=1)}
+        super(FeedbackWidgetView, self).__init__(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return super(FeedbackWidgetView, self).get(request, *args, **kwargs)
