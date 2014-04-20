@@ -20,9 +20,6 @@ class FeedbackDetailView(VoiceMixin, DetailView):
     template_name = 'djangovoice/detail.html'
     model = Feedback
 
-    def get_context_data(self, **kwargs):
-        return super(FeedbackDetailView, self).get_context_data(**kwargs)
-
     def get(self, request, *args, **kwargs):
         feedback = self.get_object()
 
@@ -132,12 +129,11 @@ class FeedbackWidgetView(FormView):
     template_name = 'djangovoice/widget.html'
     form_class = WidgetForm
 
-    def __init__(self, *args, **kwargs):
-        self.initial = {'type': Type.objects.get(pk=1)}
-        super(FeedbackWidgetView, self).__init__(*args, **kwargs)
-
     def get(self, request, *args, **kwargs):
         return super(FeedbackWidgetView, self).get(request, *args, **kwargs)
+
+    def get_initial(self):
+        return {'type': Type.objects.get(pk=1)}
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
