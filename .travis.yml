@@ -11,4 +11,4 @@ install:
     - pip install -r requirements/travis.txt --use-mirrors
 script:
     - "cd demo"
-    - "python manage.py test djangovoice"
+    - "python manage.py test demo"
