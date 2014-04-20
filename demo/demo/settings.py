@@ -76,8 +76,7 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'qhonuskan_votes',
     'djangovoice',
-    'south',
-    'base',
+    'south'
 )
 
 # A sample logging configuration. The only tangible logging
