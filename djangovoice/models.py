@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext_lazy as _
 from djangovoice.compat import User
+from djangovoice.model_managers import StatusManager
 from qhonuskan_votes.models import VotesField
 from qhonuskan_votes.models import ObjectsWithScoresManager
 
@@ -19,6 +20,8 @@ class Status(models.Model):
         help_text=_("New feedback will have this status"))
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
+
+    objects = StatusManager()
 
     def save(self, **kwargs):
         if self.default:
@@ -81,17 +84,8 @@ class Feedback(models.Model):
     objects = ObjectsWithScoresManager()
 
     def save(self, **kwargs):
-        try:
-            self.status
-
-        except Status.DoesNotExist:
-            try:
-                default = Status.objects.get(default=True)
-
-            except Status.DoesNotExist:
-                default = Status.objects.all()[0]
-
-            self.status = default
+        if self.status_id is None:
+            self.status = Status.objects.get_default()
 
         super(Feedback, self).save(**kwargs)
 

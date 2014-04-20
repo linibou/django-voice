@@ -4,8 +4,11 @@ from django.test import Client, TestCase
 from djangovoice.models import *
 
 
-class ViewTestCase(TestCase):
+class DjangoVoiceTestCase(TestCase):
+    fixtures = ['initial_data']
 
+
+class ViewTestCase(DjangoVoiceTestCase):
     def setUp(self):
         self.client = Client()
 
@@ -15,7 +18,7 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class StatusTestCase(TestCase):
+class StatusTestCase(DjangoVoiceTestCase):
     def setUp(self):
         self.in_progress = Status.objects.create(
             title='In progress', slug='in_progress', default=False)
@@ -27,7 +30,7 @@ class StatusTestCase(TestCase):
         self.assertEqual(self.need_to_test.default, True)
 
 
-class TypeTestCase(TestCase):
+class TypeTestCase(DjangoVoiceTestCase):
     def setUp(self):
         self.bug = Type.objects.create(title='Bug', slug='bug')
         self.betterment = Type.objects.create(title='Betterment',
@@ -38,7 +41,7 @@ class TypeTestCase(TestCase):
         self.assertEqual(self.betterment.title, 'Betterment')
 
 
-class FeedbackTestCase(TestCase):
+class FeedbackTestCase(DjangoVoiceTestCase):
     def setUp(self):
         feedback_type = Type.objects.create(title='Bug', slug='bug')
         feedback_user = User.objects.create_user(
