@@ -73,6 +73,17 @@ and urls.py like this:
       url(r'^comments/', include('django.contrib.comments.urls')),
       url(r'^feedback/', include('djangovoice.urls')))
 
+If you're using Django 1.6> contrib.comments is deprecated and you can use the forked project: 
+https://github.com/django/django-contrib-comments
+Follow those instructions. Of course your urls.py now looks like this:
+
+:: 
+
+  urlpatterns = patterns(
+      ...
+      url(r'^comments/', include('django_comments.urls')),
+      url(r'^feedback/', include('djangovoice.urls')))
+
 Remember to create and save at least one Type and Status model instance.
 
 That's all you need to run django-voice.
