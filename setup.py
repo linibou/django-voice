@@ -4,13 +4,13 @@ from setuptools import setup, find_packages
 
 pkg_name = 'djangovoice'
 version = __import__(pkg_name).__version__
-description = file('README.rst', 'r').read()
+description = open('README.rst', 'r').read()
 
 # get requires from requirements/global.txt file.
 requires_file_name = os.path.join(
     os.path.dirname(__file__), 'requirements', 'global.txt')
 install_requires = []
-with file(requires_file_name) as requires:
+with open(requires_file_name) as requires:
     requires_list = [x for x in requires.readlines() if len(x.strip()) > 0]
     for require in requires_list:
         require = require.strip()
