@@ -33,7 +33,7 @@ class FeedbackForm(forms.ModelForm):
             del self.fields[field_name]
 
         # add tabindex attribute to fields:
-        for index, field in enumerate(self.fields.values(), 1):
+        for index, field in enumerate(list(self.fields.values()), 1):
             field.widget.attrs.update({'tabindex': index})
 
     def clean(self):

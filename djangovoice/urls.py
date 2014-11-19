@@ -5,7 +5,7 @@ from djangovoice.views import (
     FeedbackListView, FeedbackWidgetView, FeedbackSubmitView,
     FeedbackDetailView, FeedbackEditView, FeedbackDeleteView)
 from djangovoice.feeds import LatestFeedback
-from utils import get_voice_extra_context
+from .utils import get_voice_extra_context
 
 feedback_list_regex = '^(?P<list>all|open|closed|mine)'
 feedback_dict = {
