@@ -1,5 +1,5 @@
 ## Project Specific Ignores
-demo/demo.db
+/demo/demo/demo.db
 
 ## Copied from https://github.com/github/gitignore/
 ## Django.gitignore
