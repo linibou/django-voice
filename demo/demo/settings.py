@@ -54,6 +54,8 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_DIRS = (os.path.join(ROOT, '..', 'templates'),)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -77,7 +79,7 @@ INSTALLED_APPS = (
     'qhonuskan_votes',
     'djangovoice',
     'south',
-    'base',
+    'demo'
 )
 
 # A sample logging configuration. The only tangible logging
