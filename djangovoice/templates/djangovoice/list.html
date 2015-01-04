@@ -3,7 +3,6 @@
 {% load i18n %}
 {% load url from future %}
 {% load djangovoice_tags comments %}
-{% load vote_buttons_for from qhonuskan_votes %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -34,7 +33,7 @@
             </span>
           {% endif %}
 
-          {% vote_buttons_for object "djangovoice/includes/vote_buttons.html" %}
+          {# TODO: add vote buttons #}
 
           <div class="details">
             <h3>

@@ -3,7 +3,6 @@
 {% load blocktrans trans from i18n %}
 {% load url from future %}
 {% load comments %}
-{% load vote_buttons_for from qhonuskan_votes %}
 {% load get_user_image display_name from djangovoice_tags %}
 
 {% block title %}{% trans "Feedback" %}{% endblock %}
@@ -23,7 +22,7 @@
   {% endif %}
 
   <div class="votes pull-left">
-    {% vote_buttons_for feedback "djangovoice/includes/vote_buttons.html" %}
+    {# TODO: add vote buttons #}
   </div>
 
   <h3 class="feedback-title content-spaces">{{ feedback.title }}</h3>

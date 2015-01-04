@@ -48,7 +48,7 @@ To satisfy dependencies listed in REQUIREMENTS you can simply run this command:
 'pip' will automatically download and install dependencies required for django-voice. Next step is activating helper applications to run.
 
 * Activate django's comment system. (https://docs.djangoproject.com/en/dev/ref/contrib/comments/)
-* Add django-gravatar (optional) and qhonuskan-votes to your INSTALLED_APPS in settings file.
+* Add django-gravatar (optional) and django-voting (required) to your INSTALLED_APPS in settings file.
 * Add comments and django-voice to your url configration.
 * Create at least one Type and Status either through the admin or fixtures.
 
@@ -58,8 +58,8 @@ After these steps, your INSTALLED_APPS in settings.py must be seen like this:
 
   INSTALLED_APPS = (
       ...
-      'django.contrib.comments',
-      'qhonuskan_votes',
+      'django.contrib.comments', # it's separated extensions for django 1.7.+
+      'voting',
       'gravatar',  # it's optional dependency
       'djangovoice'
   )
@@ -73,11 +73,11 @@ and urls.py like this:
       url(r'^comments/', include('django.contrib.comments.urls')),
       url(r'^feedback/', include('djangovoice.urls')))
 
-If you're using Django 1.6> contrib.comments is deprecated and you can use the forked project: 
+If you're using Django 1.6> contrib.comments is deprecated and you can use the forked project:
 https://github.com/django/django-contrib-comments
 Follow those instructions. Of course your urls.py now looks like this:
 
-:: 
+::
 
   urlpatterns = patterns(
       ...

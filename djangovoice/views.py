@@ -16,6 +16,16 @@ from djangovoice.mixins import VoiceMixin
 from djangovoice.settings import ALLOW_ANONYMOUS_USER_SUBMIT
 
 
+__all__ = [
+    'FeedbackDetailView',
+    'FeedbackListView',
+    'FeedbackWidgetView',
+    'FeedbackSubmitView',
+    'FeedbackEditView',
+    'FeedbackDeleteView'
+]
+
+
 class FeedbackDetailView(VoiceMixin, DetailView):
     template_name = 'djangovoice/detail.html'
     model = Feedback
@@ -40,7 +50,6 @@ class FeedbackDetailView(VoiceMixin, DetailView):
 
 class FeedbackListView(VoiceMixin, ListView):
     template_name = 'djangovoice/list.html'
-    model = Feedback
     paginate_by = 10
 
     def get_queryset(self):
@@ -75,10 +84,10 @@ class FeedbackListView(VoiceMixin, ListView):
         if f_showpriv and self.request.user.is_authenticated():
             # Show everyone's public discussions and user's own private
             # discussions
-            queryset = self.model.objects.filter(
+            queryset = Feedback.objects.filter(
                 Q(**f_filters) | Q(user=self.request.user, private=True))
         else:
-            queryset = self.model.objects.filter(**f_filters)
+            queryset = Feedback.objects.filter(**f_filters)
 
         queryset = queryset.order_by('-vote_score', '-created')
 

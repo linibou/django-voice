@@ -5,8 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from djangovoice.compat import User
 from djangovoice.model_managers import StatusManager
-from qhonuskan_votes.models import VotesField
-from qhonuskan_votes.models import ObjectsWithScoresManager
 
 STATUS_CHOICES = (
     ('open', pgettext('status', "Open")),
@@ -87,7 +85,7 @@ class Feedback(models.Model):
     duplicate = models.ForeignKey(
         'self', null=True, blank=True, verbose_name=_("Duplicate"))
     votes = VotesField()
-    objects = ObjectsWithScoresManager()
+    # objects = ObjectsWithScoresManager()
 
     class Meta:
         verbose_name = _("feedback")

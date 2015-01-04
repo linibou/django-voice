@@ -1,5 +1,5 @@
 from django.contrib.sites.models import get_current_site
-from settings import BRAND_VIEW
+from djangovoice.settings import BRAND_VIEW
 
 class VoiceMixin(object):
     def get_context_data(self, **kwargs):
