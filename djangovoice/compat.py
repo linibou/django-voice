@@ -1,4 +1,4 @@
-import urllib.request, urllib.parse, urllib.error
+from six.moves import urllib
 from django import VERSION as DJANGO_VERSION
 from django.conf import settings
 from hashlib import md5
