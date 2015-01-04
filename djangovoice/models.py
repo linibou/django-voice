@@ -1,6 +1,8 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 from djangovoice.compat import User
 from djangovoice.model_managers import StatusManager
 from qhonuskan_votes.models import VotesField
@@ -12,6 +14,8 @@ STATUS_CHOICES = (
 )
 
 
+
+@python_2_unicode_compatible
 class Status(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
@@ -35,22 +39,24 @@ class Status(models.Model):
 
         super(Status, self).save(**kwargs)
 
-    def __unicode__(self):
-        return unicode(self.title)
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = _("status")
         verbose_name_plural = _("statuses")
 
 
+@python_2_unicode_compatible
 class Type(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
+@python_2_unicode_compatible
 class Feedback(models.Model):
     title = models.CharField(max_length=500, verbose_name=_("Title"))
     description = models.TextField(
@@ -83,21 +89,21 @@ class Feedback(models.Model):
     votes = VotesField()
     objects = ObjectsWithScoresManager()
 
+    class Meta:
+        verbose_name = _("feedback")
+        verbose_name_plural = _("feedback")
+        ordering = ('-created',)
+        get_latest_by = 'created'
+
+    def __str__(self):
+        return self.title
+
     def save(self, **kwargs):
         if self.status_id is None:
             self.status = Status.objects.get_default()
 
         super(Feedback, self).save(**kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
-        return 'djangovoice_item', [self.id]
-
-    def __unicode__(self):
-        return unicode(self.title)
-
-    class Meta:
-        verbose_name = _("feedback")
-        verbose_name_plural = _("feedback")
-        ordering = ('-created',)
-        get_latest_by = 'created'
+        url = reverse('djangovoice_item', args=[self.id])
+        return url

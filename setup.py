@@ -4,14 +4,14 @@ from setuptools import setup, find_packages
 
 pkg_name = 'djangovoice'
 version = __import__(pkg_name).__version__
-description = file('README.rst', 'r').read()
+description = open('README.rst', 'r').read()
 
 # get requires from requirements/global.txt file.
 requires_file_name = os.path.join(
     os.path.dirname(__file__), 'requirements', 'global.txt')
 install_requires = []
-with file(requires_file_name) as requires:
-    requires_list = filter(lambda x: len(x.strip()) > 0, requires.readlines())
+with open(requires_file_name) as requires:
+    requires_list = [x for x in requires.readlines() if len(x.strip()) > 0]
     for require in requires_list:
         require = require.strip()
         if require[0] in ['-', '#']:
@@ -24,7 +24,7 @@ setup(
     version=version,
     description="A feedback application for Django",
     long_description=description,
-    author=u'Gökmen Görgen',
+    author='Gökmen Görgen',
     author_email='gokmen@alageek.com',
     url='https://github.com/gkmngrgn/django-voice',
     license='BSD',
