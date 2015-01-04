@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from django import VERSION as DJANGO_VERSION
 from django.conf import settings
 from hashlib import md5
@@ -19,7 +19,7 @@ else:
     gravatar_url = 'http://www.gravatar.com/'
 
     def gravatar_for_user(user, size=80):
-        size_param = urllib.urlencode({'s': str(size)})
+        size_param = urllib.parse.urlencode({'s': str(size)})
         email = md5(user.email).hexdigest()
         url = '%savatar/%s/?%s' % (gravatar_url, email, size_param)
 

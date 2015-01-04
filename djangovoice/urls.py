@@ -5,7 +5,7 @@ from djangovoice.views import (
     FeedbackListView, FeedbackWidgetView, FeedbackSubmitView,
     FeedbackDetailView, FeedbackEditView, FeedbackDeleteView)
 from djangovoice.feeds import LatestFeedback
-from djangovoice.settings import BRAND_VIEW
+from .utils import get_voice_extra_context
 
 feedback_list_regex = '^(?P<list>all|open|closed|mine)'
 feedback_dict = {
@@ -47,7 +47,7 @@ urlpatterns = patterns(
         name='djangovoice_signin',
         kwargs={
             'template_name': 'djangovoice/signin.html',
-            'extra_context': {'brand_view': BRAND_VIEW}
+            'extra_context': get_voice_extra_context()
         }),
 
     url(r'^(?P<pk>\d+)/$',
