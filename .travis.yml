@@ -1,22 +1,22 @@
 language: python
 python:
-    - 2.7
-    - 3.3
-    - 3.4
+  - 2.7
+  - 3.3
+  - 3.4
 env:
-    - DJANGO_VERSION=1.4.17
-    - DJANGO_VERSION=1.5.12
-    - DJANGO_VERSION=1.6.9
+  - DJANGO=1.4.17
+  - DJANGO=1.5.12
+  - DJANGO=1.6.9
 install:
-    - pip install -q Django==$DJANGO_VERSION
-    - pip install -r requirements/global.txt --use-mirrors
-    - pip install -r requirements/travis.txt --use-mirrors
+  - pip install -q Django==$DJANGO
+  - pip install -r requirements/global.txt --use-mirrors
+  - pip install -r requirements/travis.txt --use-mirrors
 script:
-    - "cd demo"
-    - "python manage.py test demo"
+  - "cd demo"
+  - "python manage.py test demo"
 matrix:
-    - exclude:
-        - python: 3.3
-          env: DJANGO_VERSION=1.4.17
-        - python: 3.4
-          env: DJANGO_VERSION=1.4.17
+  exclude:
+    - python: 3.3
+      env: DJANGO=1.4.17
+    - python: 3.4
+      env: DJANGO=1.4.17
