@@ -1,10 +1,12 @@
 language: python
 python:
-    - "2.7"
+    - 2.7
+    - 3.3
+    - 3.4
 env:
-    - DJANGO_VERSION=1.4.10
-    - DJANGO_VERSION=1.5.5
-    - DJANGO_VERSION=1.6.2
+    - DJANGO_VERSION=1.4.17
+    - DJANGO_VERSION=1.5.12
+    - DJANGO_VERSION=1.6.9
 install:
     - pip install -q Django==$DJANGO_VERSION
     - pip install -r requirements/global.txt --use-mirrors
@@ -12,3 +14,9 @@ install:
 script:
     - "cd demo"
     - "python manage.py test demo"
+matrix:
+    - exclude:
+        - python: 3.3
+          env: DJANGO=1.4.17
+        - python: 3.4
+          env: DJANGO=1.4.17
