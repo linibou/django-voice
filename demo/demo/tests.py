@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
+from django.contrib.auth import get_user_model
 
 from djangovoice.models import *
 
@@ -44,7 +45,7 @@ class TypeTestCase(DjangoVoiceTestCase):
 class FeedbackTestCase(DjangoVoiceTestCase):
     def setUp(self):
         feedback_type = Type.objects.create(title='Bug', slug='bug')
-        feedback_user = User.objects.create_user(
+        feedback_user = get_user_model().objects.create_user(
             username='djangovoice', email='django@voice.com')
         self.login_form_does_not_work = Feedback.objects.create(
             type=feedback_type,

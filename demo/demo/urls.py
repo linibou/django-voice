@@ -12,7 +12,7 @@ urlpatterns = patterns(
         name='home'),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^comments/', include('django_comments.urls')),
     url(r'^feedback/', include('djangovoice.urls')),
     url(r'^auth/', include('django.contrib.auth.urls')),
     (r'^i18n/', include('django.conf.urls.i18n')),

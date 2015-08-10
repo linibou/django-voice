@@ -75,10 +75,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.comments',
+    'django_comments',
     'qhonuskan_votes',
     'djangovoice',
-    'south',
     'demo'
 )
 
@@ -115,3 +114,5 @@ LOGIN_URL = "/admin/login"
 
 VOICE_ALLOW_ANONYMOUS_USER_SUBMIT = True
 VOICE_BRAND_VIEW = 'home'
+
+AUTH_USER_MODEL = 'auth.User'

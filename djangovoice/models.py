@@ -3,7 +3,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from djangovoice.compat import User
+from django.conf import settings
 from djangovoice.model_managers import StatusManager
 from qhonuskan_votes.models import VotesField
 from qhonuskan_votes.models import ObjectsWithScoresManager
@@ -20,7 +20,7 @@ class Status(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
     default = models.BooleanField(
-        blank=True,
+        default=False, blank=True,
         help_text=_("New feedback will have this status"))
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
@@ -66,15 +66,15 @@ class Feedback(models.Model):
             "private details such as passwords or phone numbers here."))
     type = models.ForeignKey(Type, verbose_name=_("Type"))
     anonymous = models.BooleanField(
-        blank=True, verbose_name=_("Anonymous"),
+        default=False, blank=True, verbose_name=_("Anonymous"),
         help_text=_("Do not show who sent this"))
     private = models.BooleanField(
-        verbose_name=_("Private"), blank=True,
+        verbose_name=_("Private"), default=False, blank=True,
         help_text=_(
             "Hide from public pages. Only site administrators will be able to "
             "view and respond to this"))
     user = models.ForeignKey(
-        User, blank=True, null=True, verbose_name=_("User"))
+        settings.AUTH_USER_MODEL, blank=True, null=True, verbose_name=_("User"))
     email = models.EmailField(
         blank=True, null=True, verbose_name=_('E-mail'),
         help_text=_(

@@ -1,0 +1,4 @@
+Django>=1.4
+six>=1.9.0
+git+git://github.com/laginha/qhonuskan-votes.git@master
+django-contrib-comments>=1.6.1
