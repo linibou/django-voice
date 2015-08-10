@@ -1,3 +1,3 @@
 Django>=1.4
 six>=1.9.0
-git+git://github.com/kevinmickey/qhonuskan-votes.git@filestructure#egg=qhonuskan-votes
+git+https://github.com/kevinmickey/qhonuskan-votes.git@filestructure#egg=qhonuskan-votes
