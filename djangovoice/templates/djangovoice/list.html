@@ -1,7 +1,6 @@
 {% extends "djangovoice/base.html" %}
 
 {% load i18n %}
-{% load url from future %}
 {% load djangovoice_tags comments %}
 {% load vote_buttons_for from qhonuskan_votes %}
 
@@ -48,7 +47,7 @@
                 {% if object.user %}
                   {% trans "Submitted by:" %}
                   <a href="{{ object.user.get_absolute_url }}" class="avatar" title="{% trans "View profile" %}">
-                    {% get_user_image object.user 15 %}
+                    {% autoescape off %}{% get_user_image object.user 15 %}{% endautoescape %}
                   </a>
 
                   <a href="{{ object.user.get_absolute_url }}" title="View profile">

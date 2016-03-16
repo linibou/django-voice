@@ -1,7 +1,6 @@
 {% extends "djangovoice/base.html" %}
 
 {% load blocktrans trans from i18n %}
-{% load url from future %}
 {% load comments %}
 {% load vote_buttons_for from qhonuskan_votes %}
 {% load get_user_image display_name from djangovoice_tags %}
@@ -62,7 +61,7 @@
           <a name="{{ comment.id }}"></a>
 
           <div class="content">
-            <div class="avatar">{% get_user_image comment.user 40 %}</div>
+            <div class="avatar">{% autoescape off %}{% get_user_image comment.user 40 %}{% endautoescape %}</div>
 
             {% if comment.user.is_staff %}
               <div class="staff">{% trans "Staff" %}</div>
